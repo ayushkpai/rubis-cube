@@ -106,16 +106,6 @@ export default function CubeGame() {
     [engine],
   );
 
-  const resetCube = useCallback(() => {
-    engine.reset();
-    modeRef.current = "playing";
-    setPhase("playing");
-    setHistory([]);
-    setTurns(0);
-    setSolution(null);
-    setSolved(true);
-  }, [engine]);
-
   const toggleSolution = useCallback(() => {
     if (solution) {
       setSolution(null);
@@ -224,24 +214,7 @@ export default function CubeGame() {
 
         <aside className="flex flex-col gap-4">
           <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
-            <div className="flex items-center justify-between gap-2">
-              <button
-                onClick={startScramble}
-                disabled={phase !== "playing"}
-                className="flex-1 rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-black transition hover:bg-white/85 disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                New scramble
-              </button>
-              <button
-                onClick={resetCube}
-                disabled={phase !== "playing"}
-                className="rounded-xl border border-white/10 px-4 py-2.5 text-sm font-medium text-white/70 transition hover:border-white/25 hover:text-white disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                Reset
-              </button>
-            </div>
-
-            <div className="mt-5 flex items-baseline justify-between">
+            <div className="flex items-baseline justify-between">
               <h2 className="text-xs font-medium uppercase tracking-[0.2em] text-white/40">
                 Turns
               </h2>
